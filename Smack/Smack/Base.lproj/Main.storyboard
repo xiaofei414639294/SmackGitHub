@@ -182,6 +182,7 @@
                                     <color key="titleColor" red="0.35686274509999999" green="0.62352941179999999" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="creatAccount:" destination="XsA-f6-uTn" eventType="touchUpInside" id="rlG-Ik-HsV"/>
                                     <action selector="createAccountBtnPressed:" destination="jhh-sZ-yTQ" eventType="touchUpInside" id="GCu-fY-RlI"/>
                                 </connections>
                             </button>
@@ -226,6 +227,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auw-ph-XlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XsA-f6-uTn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1336.875" y="-286.26760563380282"/>
         </scene>
@@ -272,6 +274,9 @@
                                 <state key="normal" title="Create Account">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="createAccntPress:" destination="Gic-dP-3gp" eventType="touchUpInside" id="IxZ-YC-VO7"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smackLogo" translatesAutoresizingMaskIntoConstraints="NO" id="S1F-3M-CHe">
                                 <rect key="frame" x="52" y="80" width="48" height="40"/>
@@ -296,6 +301,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountBtnPressed:" destination="jhh-sZ-yTQ" eventType="touchUpInside" id="Xc8-UV-ZiT"/>
+                                    <action selector="pickAvatarPressed:" destination="Gic-dP-3gp" eventType="touchUpInside" id="9m5-m5-dRU"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="hCK-IN-0H0">
@@ -311,6 +317,7 @@
                                 </state>
                                 <connections>
                                     <action selector="createAccountBtnPressed:" destination="jhh-sZ-yTQ" eventType="touchUpInside" id="YRL-er-ijw"/>
+                                    <action selector="pickBGColorPressed:" destination="Gic-dP-3gp" eventType="touchUpInside" id="vfe-Sz-2jk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -326,6 +333,10 @@
                         <viewLayoutGuide key="safeArea" id="4kf-2r-wh6"/>
                     </view>
                     <connections>
+                        <outlet property="emailTxt" destination="R9b-4m-jo7" id="0rk-MO-Vbg"/>
+                        <outlet property="passwordTxt" destination="emS-Bu-lTm" id="yzb-VH-mce"/>
+                        <outlet property="userImg" destination="hCK-IN-0H0" id="rPy-Qc-XTl"/>
+                        <outlet property="usernameTxt" destination="BcE-sK-Eim" id="PbH-AV-nLF"/>
                         <segue destination="cSI-19-88U" kind="unwind" identifier="unwindToChannel" unwindAction="prepareForUnwindWithSegue:" id="EMG-Es-RXm"/>
                     </connections>
                 </viewController>

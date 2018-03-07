@@ -25,4 +25,9 @@ class ChannelVC: UIViewController {
         performSegue(withIdentifier: TO_LOGIN, sender: nil) 
     }
     
+    
+    @IBAction func creatAccount(_ sender: Any) {
+        performSegue(withIdentifier: URL_REGISTER, sender: nil)
+    }
+
 }
