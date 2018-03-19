@@ -22,7 +22,7 @@
 		7B3143D0203B73DA00579258 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3143CF203B73DA00579258 /* ChannelVC.swift */; };
 		7B4FEB5E2052FD8000BAE823 /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4FEB5D2052FD8000BAE823 /* UserDataService.swift */; };
 		7B6DFB6820600FCE00F740EE /* AvatarPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6DFB6720600FCE00F740EE /* AvatarPickerVC.swift */; };
-		7B6DFB6A20601B8000F740EE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6DFB6920601B8000F740EE /* CollectionViewCell.swift */; };
+		7B6DFB6A20601B8000F740EE /* AvatarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6DFB6920601B8000F740EE /* AvatarCell.swift */; };
 		7BD2E335205068DA00FEE46E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD2E334205068DA00FEE46E /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +46,7 @@
 		7B3143CF203B73DA00579258 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
 		7B4FEB5D2052FD8000BAE823 /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		7B6DFB6720600FCE00F740EE /* AvatarPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarPickerVC.swift; sourceTree = "<group>"; };
-		7B6DFB6920601B8000F740EE /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		7B6DFB6920601B8000F740EE /* AvatarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCell.swift; sourceTree = "<group>"; };
 		7BD2E334205068DA00FEE46E /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		7E70245C190CC8F173D2CF2E /* Pods-Smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.debug.xcconfig"; sourceTree = "<group>"; };
 		C36498C53E6FCA2F9AFF7E68 /* Pods-Smack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 			children = (
 				7B161EBE20408A6200AF5B21 /* GrandientView.swift */,
 				7B06BB122050A74C0031AF1C /* RoundedButton.swift */,
-				7B6DFB6920601B8000F740EE /* CollectionViewCell.swift */,
+				7B6DFB6920601B8000F740EE /* AvatarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 				7B161EC82040CF7A00AF5B21 /* CreateAccountVC.swift in Sources */,
 				7BD2E335205068DA00FEE46E /* AuthService.swift in Sources */,
 				7B161EC42040C6E000AF5B21 /* LoginVC.swift in Sources */,
-				7B6DFB6A20601B8000F740EE /* CollectionViewCell.swift in Sources */,
+				7B6DFB6A20601B8000F740EE /* AvatarCell.swift in Sources */,
 				7B3143CE203B73B300579258 /* ChatVC.swift in Sources */,
 				7B3143B4203B69FE00579258 /* AppDelegate.swift in Sources */,
 				7B3143C9203B6F4700579258 /* SWRevealViewController.m in Sources */,
