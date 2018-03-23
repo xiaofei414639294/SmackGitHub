@@ -7,9 +7,23 @@
 //
 
 import Foundation
+//import MultipeerConnectivity
+//
+//protocol UserDataServiceDelegate {
+//    
+////    func connectedDevicesChanged(manager : UserDataService, connectedDevices: [String])
+////    func colorChanged(manager : UserDataService, colorString: String)
+//    
+//}
 
-class UserDataService {
+class UserDataService  {
     static let instance = UserDataService()
+//    private let UserDataServiceType = "example-user"
+//
+//    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+//
+//    private let serviceAdvertiser : MCNearbyServiceAdvertiser
+//    private let serviceBrowser : MCNearbyServiceBrowser
     
     public private(set) var id = ""
     public private(set) var avatarColor = ""
@@ -29,5 +43,6 @@ class UserDataService {
     func setAvatarName(avatarName: String) {
         self.avatarName = avatarName
     }
+    
     
 }
