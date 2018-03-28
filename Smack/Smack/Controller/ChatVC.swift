@@ -9,12 +9,10 @@
 import UIKit
 import MultipeerConnectivity
 import Alamofire
-import Photos
 
-class ChatVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate {
+class ChatVC: UIViewController, UIImagePickerControllerDelegate, MCSessionDelegate, MCBrowserViewControllerDelegate {
 
     var images = [UIImage]()
-    
     var peerID: MCPeerID!
     var mcSession: MCSession!
     var mcAdvertiserAssistant: MCAdvertiserAssistant!

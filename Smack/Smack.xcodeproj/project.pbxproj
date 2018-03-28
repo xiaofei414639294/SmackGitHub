@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		555480B81732E20A02503969 /* Pods_Smack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 035718C5E638BD9DEFCF602F /* Pods_Smack.framework */; };
 		7B06BB132050A74C0031AF1C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B06BB122050A74C0031AF1C /* RoundedButton.swift */; };
+		7B0A8E52206C066400E2894C /* SendPeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0A8E51206C066400E2894C /* SendPeerService.swift */; };
 		7B161EBF20408A6200AF5B21 /* GrandientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B161EBE20408A6200AF5B21 /* GrandientView.swift */; };
 		7B161EC22040A3EF00AF5B21 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B161EC12040A3EF00AF5B21 /* Constants.swift */; };
 		7B161EC42040C6E000AF5B21 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B161EC32040C6E000AF5B21 /* LoginVC.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		035718C5E638BD9DEFCF602F /* Pods_Smack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B06BB122050A74C0031AF1C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		7B0A8E51206C066400E2894C /* SendPeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPeerService.swift; sourceTree = "<group>"; };
 		7B161EBE20408A6200AF5B21 /* GrandientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandientView.swift; sourceTree = "<group>"; };
 		7B161EC12040A3EF00AF5B21 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B161EC32040C6E000AF5B21 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			children = (
 				7BD2E334205068DA00FEE46E /* AuthService.swift */,
 				7B4FEB5D2052FD8000BAE823 /* UserDataService.swift */,
+				7B0A8E51206C066400E2894C /* SendPeerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				7B3143CE203B73B300579258 /* ChatVC.swift in Sources */,
 				7B3143B4203B69FE00579258 /* AppDelegate.swift in Sources */,
 				7B3143C9203B6F4700579258 /* SWRevealViewController.m in Sources */,
+				7B0A8E52206C066400E2894C /* SendPeerService.swift in Sources */,
 				7B161EC22040A3EF00AF5B21 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

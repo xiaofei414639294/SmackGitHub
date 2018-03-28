@@ -5,9 +5,9 @@
 //  Created by xiaofei xie on 2/23/18.
 //  Copyright © 2018 xiaofei xie. All rights reserved.
 //
-//import Foundation
+
 import UIKit
-//import MultipeerConnectivity
+import MultipeerConnectivity
 
 
 class CreateAccountVC: UIViewController {
@@ -18,26 +18,19 @@ class CreateAccountVC: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var userImg: UIImageView!
     
+    
     //variables
     var avatarName = "profileDefault"
     var avatarColor = "[0.5, 0.5, 0.5, 1]"
     var bgColor : UIColor?
     
-    
-    //send data
-//    private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
-//    private let serviceAdvertiser : MCNearbyServiceAdvertiser
-//    private let serviceBrowser : MCNearbyServiceBrowser
-//    
-//    var delegate : CreateAccountVCDelegate?
-    
-    
-    
+    let sendPeer = SendPeerService()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        // Do any additional setup after loading the view.
+        sendPeer.delegate = self
     }
     
    
@@ -58,20 +51,21 @@ class CreateAccountVC: UIViewController {
         guard let email = emailTxt.text, emailTxt.text != "" else { return }
         guard let pass = passwordTxt.text, passwordTxt.text != "" else { return}
         
+        
+//        let name = "test"
+//        let email = "test@gmail.com"
+//        let pass = "test"
+
+        self.sendPeer.send(avatarName: self.avatarName)
+        
         AuthService.instance.registerUser(email: email, password: pass) { (success) in
             if success {
                 AuthService.instance.loginUser(email: email, password: pass, completion: { (success) in
                     if success {
                         AuthService.instance.createUser(name: name, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
                             if success {
-                                print(UserDataService.instance.name, UserDataService.instance.avatarName)
-                                
-                                // send email, name, password avatarName to peer
-//                                let Image = self.avatarName
-//
-//                                let userService = UserDataService()
-                                
-                                
+//                                print(UserDataService.instance.name, UserDataService.instance.avatarName)
+
                                 self.performSegue(withIdentifier: UNWIND, sender: nil)
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                             }
@@ -111,21 +105,22 @@ class CreateAccountVC: UIViewController {
         view.endEditing(true)
     }
     
-//    func sendImage(img: UIImage) {
-//        if mcSession.connectedPeers.count > 0 {
-//            if let imageData = UIImagePNGRepresentation(img) {
-//                do {
-//                    try mcSession.send(imageData, toPeers: mcSession.connectedPeers, with: .reliable)
-//                } catch let error as NSError {
-//                    let ac = UIAlertController(title: "Send error", message: error.localizedDescription, preferredStyle: .alert)
-//                    ac.addAction(UIAlertAction(title: "OK", style: .default))
-//                    present(ac, animated: true)
-//                }
-//            }
-//        }
-//    }
+}
     
     
-   
+extension CreateAccountVC : SendPeerServiceDelegate {
+        
+        func connectedDevicesChanged(manager: SendPeerService, connectedDevices: [String]) {
+            OperationQueue.main.addOperation {
+                print("Connections: \(connectedDevices)")
+            }
+        }
+        
+       func avatarChanged(manager: SendPeerService, avatarString: String) {
+            OperationQueue.main.addOperation {
+                self.performSegue(withIdentifier: UNWIND, sender: nil)
+                print("############## \(avatarString)")
+            }
+        }
     
 }
