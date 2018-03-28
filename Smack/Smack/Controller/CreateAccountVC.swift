@@ -24,6 +24,10 @@ class CreateAccountVC: UIViewController {
     var avatarColor = "[0.5, 0.5, 0.5, 1]"
     var bgColor : UIColor?
     
+    let name = "test"
+    let email = "test@gmail.com"
+
+    
     let sendPeer = SendPeerService()
 
 
@@ -47,33 +51,12 @@ class CreateAccountVC: UIViewController {
     
     
     @IBAction func createAccntPress(_ sender: Any) {
-        guard let name = usernameTxt.text, usernameTxt.text != "" else { return }
-        guard let email = emailTxt.text, emailTxt.text != "" else { return }
-        guard let pass = passwordTxt.text, passwordTxt.text != "" else { return}
         
-        
-//        let name = "test"
-//        let email = "test@gmail.com"
-//        let pass = "test"
-
         self.sendPeer.send(avatarName: self.avatarName)
         
-        AuthService.instance.registerUser(email: email, password: pass) { (success) in
-            if success {
-                AuthService.instance.loginUser(email: email, password: pass, completion: { (success) in
-                    if success {
-                        AuthService.instance.createUser(name: name, email: email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
-                            if success {
-//                                print(UserDataService.instance.name, UserDataService.instance.avatarName)
 
-                                self.performSegue(withIdentifier: UNWIND, sender: nil)
-                                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-                            }
-                        })
-                    }
-                })
-            }
-        }
+        
+        
     }
     
     @IBAction func pickAvatarPressed(_ sender: Any) {
@@ -109,6 +92,7 @@ class CreateAccountVC: UIViewController {
     
     
 extension CreateAccountVC : SendPeerServiceDelegate {
+    
         
         func connectedDevicesChanged(manager: SendPeerService, connectedDevices: [String]) {
             OperationQueue.main.addOperation {
@@ -118,8 +102,15 @@ extension CreateAccountVC : SendPeerServiceDelegate {
         
        func avatarChanged(manager: SendPeerService, avatarString: String) {
             OperationQueue.main.addOperation {
-                self.performSegue(withIdentifier: UNWIND, sender: nil)
                 print("############## \(avatarString)")
+                
+                AuthService.instance.createUser(name: self.name, email: self.email, avatarName: avatarString, avatarColor: self.avatarColor, completion: { (success) in
+                    if success {
+                        self.performSegue(withIdentifier: UNWIND, sender: nil)
+                        NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+                    }
+                })
+                
             }
         }
     

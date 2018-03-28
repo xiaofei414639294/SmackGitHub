@@ -45,6 +45,7 @@ class  AuthService {
         @escaping CompletionHandler)  {
         let lowerCaseEmail = email.lowercased()
         
+        
         let body: [String: Any] = [
             "email": lowerCaseEmail,
             "password":password
