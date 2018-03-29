@@ -20,13 +20,15 @@ class SendPeerService : NSObject {
     
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.
+
     private let SendPeerServiceType = "example-avatar"
     
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
     private let serviceBrowser : MCNearbyServiceBrowser
-    var sessionRecieve = true
+    
+    var sessionRecieve = false
     
     var delegate : SendPeerServiceDelegate?
     
@@ -47,7 +49,9 @@ class SendPeerService : NSObject {
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
+        
     }
+    
     
     func send(avatarName : String) {
         NSLog("%@", "sendAvatar: \(avatarName) to \(session.connectedPeers.count) peers")

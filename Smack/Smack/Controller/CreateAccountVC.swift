@@ -53,7 +53,9 @@ class CreateAccountVC: UIViewController {
     @IBAction func createAccntPress(_ sender: Any) {
         
         ChannelVC().sendPeer.sessionRecieve = false
-        CreateAccountVC().sendPeer.sessionRecieve = true
+        CreateAccountVC().sendPeer.sessionRecieve = false
+        
+        
         
         self.sendPeer.send(avatarName: self.avatarName)
         

@@ -71,7 +71,9 @@ extension ChannelVC : SendPeerServiceDelegate {
     
     func avatarChanged(manager: SendPeerService, avatarString: String) {
         OperationQueue.main.addOperation {
-            print("************ \(avatarString)")
+            print("77777777777777777777777777777777")
+            ChannelVC().sendPeer.sessionRecieve = false
+            CreateAccountVC().sendPeer.sessionRecieve = false
         }
     }
 }
