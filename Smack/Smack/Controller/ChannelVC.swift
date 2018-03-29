@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MultipeerConnectivity
 
 class ChannelVC: UIViewController {
 
@@ -16,11 +17,23 @@ class ChannelVC: UIViewController {
     @IBOutlet weak var userImg: CircleImage!
     
     
+    var avatarName = "profileDefault"
+    var avatarColor = "[0.5, 0.5, 0.5, 1]"
+    var bgColor : UIColor?
+    
+    let name = "test"
+    let email = "test@gmail.com"
+    
+    
+    let sendPeer = SendPeerService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+
+        sendPeer.delegate = self
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -36,6 +49,11 @@ class ChannelVC: UIViewController {
         if AuthService.instance.isLoggedIn {
             loginBtn.setTitle(UserDataService.instance.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instance.avatarName)
+            
+            ChannelVC().sendPeer.sessionRecieve = true
+            CreateAccountVC().sendPeer.sessionRecieve = false
+            self.sendPeer.send(avatarName: UserDataService.instance.avatarName)
+            
         } else {
             loginBtn.setTitle("Login", for: .normal)
             userImg.image = UIImage(named: "menuProfileIcon")
@@ -43,3 +61,18 @@ class ChannelVC: UIViewController {
         }
     }
 }
+
+extension ChannelVC : SendPeerServiceDelegate {
+    func connectedDevicesChanged(manager: SendPeerService, connectedDevices: [String]) {
+        OperationQueue.main.addOperation {
+            print("Connections: \(connectedDevices)")
+        }
+    }
+    
+    func avatarChanged(manager: SendPeerService, avatarString: String) {
+        OperationQueue.main.addOperation {
+            print("************ \(avatarString)")
+        }
+    }
+}
+

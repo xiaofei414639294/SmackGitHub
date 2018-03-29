@@ -26,6 +26,7 @@ class SendPeerService : NSObject {
     
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
     private let serviceBrowser : MCNearbyServiceBrowser
+    var sessionRecieve = true
     
     var delegate : SendPeerServiceDelegate?
     
@@ -108,9 +109,14 @@ extension SendPeerService : MCSessionDelegate {
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        NSLog("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
-        self.delegate?.avatarChanged(manager: self, avatarString: str)
+        if sessionRecieve == true {
+            NSLog("%@", "didReceiveData: \(data)")
+            let str = String(data: data, encoding: .utf8)!
+            self.delegate?.avatarChanged(manager: self, avatarString: str)
+        } else {
+            NSLog("%@", "NotReceiveData: \(data)")
+        }
+        
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

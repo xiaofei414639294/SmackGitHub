@@ -18,7 +18,7 @@ let URL_USER_ADD = "\(BASE_URL)user/add"
 
 // Notification Constants
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChanged")
-let GET_AVATAOR = Notification.Name("getAvatator")
+
 
 //Segues
 let TO_LOGIN = "toLogin"

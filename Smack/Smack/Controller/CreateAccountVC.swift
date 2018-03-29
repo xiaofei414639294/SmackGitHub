@@ -52,11 +52,17 @@ class CreateAccountVC: UIViewController {
     
     @IBAction func createAccntPress(_ sender: Any) {
         
+        ChannelVC().sendPeer.sessionRecieve = false
+        CreateAccountVC().sendPeer.sessionRecieve = true
+        
         self.sendPeer.send(avatarName: self.avatarName)
         
-
-        
-        
+//        AuthService.instance.createUser(name: self.name, email: self.email, avatarName: self.avatarName, avatarColor: self.avatarColor, completion: { (success) in
+//            if success {
+//                self.performSegue(withIdentifier: UNWIND, sender: nil)
+//                NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
+//            }
+//        })
     }
     
     @IBAction func pickAvatarPressed(_ sender: Any) {
@@ -92,8 +98,6 @@ class CreateAccountVC: UIViewController {
     
     
 extension CreateAccountVC : SendPeerServiceDelegate {
-    
-        
         func connectedDevicesChanged(manager: SendPeerService, connectedDevices: [String]) {
             OperationQueue.main.addOperation {
                 print("Connections: \(connectedDevices)")
@@ -103,6 +107,7 @@ extension CreateAccountVC : SendPeerServiceDelegate {
        func avatarChanged(manager: SendPeerService, avatarString: String) {
             OperationQueue.main.addOperation {
                 print("############## \(avatarString)")
+                print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
                 
                 AuthService.instance.createUser(name: self.name, email: self.email, avatarName: avatarString, avatarColor: self.avatarColor, completion: { (success) in
                     if success {
@@ -110,8 +115,6 @@ extension CreateAccountVC : SendPeerServiceDelegate {
                         NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                     }
                 })
-                
             }
         }
-    
 }
