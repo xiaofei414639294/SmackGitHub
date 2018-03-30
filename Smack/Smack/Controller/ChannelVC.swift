@@ -16,24 +16,20 @@ class ChannelVC: UIViewController {
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){}
     @IBOutlet weak var userImg: CircleImage!
     
-    
     var avatarName = "profileDefault"
     var avatarColor = "[0.5, 0.5, 0.5, 1]"
     var bgColor : UIColor?
     
     let name = "test"
     let email = "test@gmail.com"
-    
-    
-    let sendPeer = SendPeerService()
-    
+
+    let sendPeer1 = SendPeerService1()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.revealViewController().rearViewRevealWidth = self.view.frame.size.width - 60
         NotificationCenter.default.addObserver(self, selector: #selector(ChannelVC.userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
-
-        sendPeer.delegate = self
+        sendPeer1.delegate = self
     }
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -50,9 +46,11 @@ class ChannelVC: UIViewController {
             loginBtn.setTitle(UserDataService.instance.name, for: .normal)
             userImg.image = UIImage(named: UserDataService.instance.avatarName)
             
-            ChannelVC().sendPeer.sessionRecieve = true
-            CreateAccountVC().sendPeer.sessionRecieve = false
-            self.sendPeer.send(avatarName: UserDataService.instance.avatarName)
+            print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+     
+            sendPeer1.send(avatarName: UserDataService.instance.avatarName)
+            
+            print("---------------------------")
             
         } else {
             loginBtn.setTitle("Login", for: .normal)
@@ -62,19 +60,18 @@ class ChannelVC: UIViewController {
     }
 }
 
-extension ChannelVC : SendPeerServiceDelegate {
-    func connectedDevicesChanged(manager: SendPeerService, connectedDevices: [String]) {
+extension ChannelVC : SendPeerServiceDelegate1 {
+    func connectedDevicesChanged(manager: SendPeerService1, connectedDevices: [String]) {
         OperationQueue.main.addOperation {
             print("Connections: \(connectedDevices)")
         }
     }
     
-    func avatarChanged(manager: SendPeerService, avatarString: String) {
+    func avatarChanged(manager: SendPeerService1, avatarString: String) {
         OperationQueue.main.addOperation {
             print("77777777777777777777777777777777")
-            ChannelVC().sendPeer.sessionRecieve = false
-            CreateAccountVC().sendPeer.sessionRecieve = false
+            
+            self.userImg.image = UIImage(named: avatarString)
         }
     }
 }
-

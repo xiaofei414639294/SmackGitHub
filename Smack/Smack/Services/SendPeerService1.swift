@@ -1,35 +1,36 @@
 //
-//  SendPeerService.swift
+//  endPeerService1.swift
 //  Smack
 //
-//  Created by xiaofei xie on 3/28/18.
+//  Created by xiaofei xie on 3/29/18.
 //  Copyright © 2018 xiaofei xie. All rights reserved.
 //
 
 import Foundation
 import MultipeerConnectivity
 
-protocol SendPeerServiceDelegate {
+protocol SendPeerServiceDelegate1 {
     
-    func connectedDevicesChanged(manager : SendPeerService, connectedDevices: [String])
-    func avatarChanged(manager : SendPeerService, avatarString: String)
+    func connectedDevicesChanged(manager : SendPeerService1, connectedDevices: [String])
+    func avatarChanged(manager : SendPeerService1, avatarString: String)
     
 }
 
-class SendPeerService : NSObject {
+class SendPeerService1 : NSObject {
     
     // Service type must be a unique string, at most 15 characters long
     // and can contain only ASCII lowercase letters, numbers and hyphens.
-    private let SendPeerServiceType = "example-avatar"
+    
+    private let SendPeerServiceType = "example-avatar1"
     
     private let myPeerId = MCPeerID(displayName: UIDevice.current.name)
     
     private let serviceAdvertiser : MCNearbyServiceAdvertiser
     private let serviceBrowser : MCNearbyServiceBrowser
     
-    var delegate : SendPeerServiceDelegate?
-    
     var sessionRecieve = true
+    
+    var delegate : SendPeerServiceDelegate1?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
@@ -48,7 +49,9 @@ class SendPeerService : NSObject {
         
         self.serviceBrowser.delegate = self
         self.serviceBrowser.startBrowsingForPeers()
+        
     }
+    
     
     func send(avatarName : String) {
         NSLog("%@", "sendAvatar: \(avatarName) to \(session.connectedPeers.count) peers")
@@ -70,7 +73,7 @@ class SendPeerService : NSObject {
     
 }
 
-extension SendPeerService : MCNearbyServiceAdvertiserDelegate {
+extension SendPeerService1 : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
@@ -78,15 +81,12 @@ extension SendPeerService : MCNearbyServiceAdvertiserDelegate {
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-        
-
             invitationHandler(true, self.session)
-
     }
     
 }
 
-extension SendPeerService : MCNearbyServiceBrowserDelegate {
+extension SendPeerService1 : MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
@@ -104,7 +104,7 @@ extension SendPeerService : MCNearbyServiceBrowserDelegate {
     
 }
 
-extension SendPeerService : MCSessionDelegate {
+extension SendPeerService1 : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         NSLog("%@", "peer \(peerID) didChangeState: \(state)")
